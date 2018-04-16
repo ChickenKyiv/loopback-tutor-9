@@ -1,17 +1,13 @@
 {
-  "name": "campground",
-  "base": "PersistedModel",
+  "name": "customer",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "name": {
-      "type": "string",
-      "required": true
-    },
-    "location": {
-      "type": "geopoint"
+      "type": "string"
     }
   },
   "validations": [],
@@ -33,9 +29,9 @@
       "permission": "DENY"
     },
     {
-      "accessType": "READ",
+      "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$everyone",
+      "principalId": "$owner",
       "permission": "ALLOW"
     },
     {
