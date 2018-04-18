@@ -14,35 +14,42 @@
     ]
   },
   "campground": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": true
   },
   "reservation": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": true
   },
   "customer": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": true
   },
   "User": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": false
   },
   "AccessToken": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": false
   },
   "ACL": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": false
   },
   "Role": {
-    "dataSource": "reservationsDS",
+    "dataSource": "reservationDS",
     "public": false
+  },
+  "Email": {
+    "dataSource": "emailDS"
+  },
+  "container": {
+    "dataSource": "photos",
+    "public": true
   }
 }

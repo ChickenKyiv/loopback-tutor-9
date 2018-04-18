@@ -1,5 +1,11 @@
 'use strict';
 
 module.exports = function enableAuthentication(server) {
-    server.enableAuth();
+    try {
+        server.enableAuth();
+      } catch (err) {
+        console.trace(err);
+        Raven.captureException(err);        
+      } 
+    
 }

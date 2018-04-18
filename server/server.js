@@ -3,7 +3,19 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
+const Raven = require('raven');
+Raven.config('https://77aa2ee9a7ce484497f56278982a0809@sentry.io/305339').install()
+
 var app = module.exports = loopback();
+
+try {
+  //add code here
+} catch (err) {
+  console.trace(err);
+  Raven.captureException(err);
+  process.exit(1); // fatal
+}
+
 
 app.start = function() {
   // start the web server
