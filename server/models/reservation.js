@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (Reservation) {
-    try {
+   
         Reservation.validate('startDate', dateValidator, { message: 'endDate should be after startDate' });
         function dateValidator(err) {
             if (this.startDate >= this.endDate) {
@@ -9,7 +9,8 @@ module.exports = function (Reservation) {
             }
         }
 
-        Reservation.observe("after save", function (ctx, next) {
+    Reservation.observe("after save", function (ctx, next) {
+        try {
             Reservation.app.models.Campground.findById(ctx.instance.campgroundId, function (err, campground) {
             Reservation.app.models.Email.send({
                     to: 'louisevdb84@gmail.com',
@@ -20,11 +21,12 @@ module.exports = function (Reservation) {
                 });
             });
             next();
+        } catch (err) {
+            console.trace(err);
+            Raven.captureException(err);        
+          }
         });
 
-      } catch (err) {
-        console.trace(err);
-        Raven.captureException(err);        
-      }
+      
     
 };
