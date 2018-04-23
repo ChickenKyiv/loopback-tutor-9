@@ -3,8 +3,7 @@ let table_name = 'RoleMapping'
 const get = () => {
 
      var roleMapping    = [
-        {
-        "id": 1,
+        {        
         "principalType": "USER",
         "principalId": "1",
         "roleId": 1,        
