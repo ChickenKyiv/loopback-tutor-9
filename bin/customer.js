@@ -23,7 +23,40 @@ const get = () => {
         },      
     ];
      return customer;
-
 };
+
+function assignAdmin(options, admin_id){
+    let server
+    let database
+    let raven
+  
+    ( {server, database, raven} = options );
+      
+    let Role        = server.models.Role;
+    let RoleMapping = server.models.RoleMapping;  
+  
+      database.automigrate('Role', function(err){
+          if (err) return cb(err);
+  
+          Role.create({ name:'admin' })
+          .then(function(role){
+  
+              role.principals.create({
+                    principalType: RoleMapping.USER,
+                    principalId: admin_id
+                }, function(err, principal){
+                  console.log('Principal', principal);
+                });
+  
+          }).catch(function(err){
+        raven.captureException("admin was not assigned");
+        throw err;
+      });
+      });
+    debug('admin was created');
+  };  
+
+
 module.exports.get = get;
 module.exports.table_name = table_name;
+module.exports.assignAdmin = assignAdmin;
