@@ -16,8 +16,6 @@ let ACL     	= require(path.resolve(__dirname, 'acl'));
 let Campground  = require(path.resolve(__dirname, 'campground'));
 let Customer    = require(path.resolve(__dirname, 'customer'));
 let Reservation = require(path.resolve(__dirname, 'reservation'));
-let Role 		= require(path.resolve(__dirname, 'role'));
-let RoleMapping = require(path.resolve(__dirname, 'rolemapping'));
 
 let options = {
 	server: server,
@@ -35,13 +33,12 @@ async.parallel({
 
 		}
 
-		if( !results || !results.attributes			
-			
-		) {
+		if( !results || !results.attributes) {
 			console.log("not imported well");
 			raven.captureException("not imported well");
 			console.log("not imported well");
-		}		
+		}
+		Users.assignAdmin(options, results.customers[2].id);
 		console.log('import finished');
 	}
 

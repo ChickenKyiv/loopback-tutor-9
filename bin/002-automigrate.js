@@ -4,8 +4,13 @@ let app      = require(path.resolve(__dirname, '../server/server'));
 var database = app.datasources.reservationDS;
 
 
-var lbTables = [
-  'Attribute',  
+var lbTables = [  
+  'AccessToken',
+  'ACL',
+  'Attributes',
+  'Campground',
+  'Customer',
+  'Reservation'
 ];
 
 database.automigrate(lbTables, function(err) {
