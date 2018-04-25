@@ -21,15 +21,13 @@ let options = {
 	raven: raven, 
 }
 async.parallel({
-	campground: async.apply(helper.create, options, Campground),
-	reservation: async.apply(helper.create, options, Reservation),
+	campground: async.apply(helper.create, options, Campground, function(err, campground){helper.create(options, Reservation)}),	
 	accessToken: async.apply(helper.create, options, AccessToken),
 	acl: async.apply(helper.create, options, ACL),
 	customer: async.apply(helper.create, options, Customer),
 	
 
-}, function (err, results) {
-	console.log(results);
+}, function (err, results) {	
 		if (err) {
 			console.log(err);
 			raven.captureException(err);			
@@ -37,7 +35,7 @@ async.parallel({
 
 		}
 
-		if( !results || !results.attributes) {
+		if( !results) {
 			console.log("not imported well");
 			raven.captureException("not imported well");
 			console.log("not imported well");
