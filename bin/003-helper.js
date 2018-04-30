@@ -35,8 +35,8 @@ const create_with_relations = ( options, datazzzz, wrapper, cb ) => {
   }); 
 };
 
-const create = (options, wrapper, cb ) => {
-
+const create = (options, wrapper, cb) => {  
+  
   if ( !options ){ raven.captureException('Options was not specified');  }
   if ( !cb )     { raven.captureException('Callback was not specified'); }
 
@@ -50,7 +50,6 @@ const create = (options, wrapper, cb ) => {
 
   let Model      = server.models[wrapper.table_name];
   let table_name = wrapper.table_name;
-
 
   let data       =  wrapper.get()
 

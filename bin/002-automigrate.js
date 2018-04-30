@@ -6,8 +6,7 @@ var database = app.datasources.reservationDS;
 
 var lbTables = [  
   'AccessToken',
-  'ACL',
-  'Attributes',
+  'ACL',  
   'Campground',
   'Customer',
   'Reservation'

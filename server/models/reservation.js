@@ -9,9 +9,9 @@ module.exports = function (Reservation) {
             }
         }
 
-    Reservation.observe("after save", function (ctx, next) {
+    Reservation.observe("after save", function (ctx, next, asd, dsa, asad) {
         try {
-            Reservation.app.models.Campground.findById(ctx.instance.campgroundId, function (err, campground) {
+            Reservation.app.models.campground.findById(ctx.instance.campgroundId, function (err, campground) {
             Reservation.app.models.Email.send({
                     to: 'louisevdb84@gmail.com',
                     from: 'louisevdb84@gmail.com',
@@ -25,8 +25,6 @@ module.exports = function (Reservation) {
             console.trace(err);
             Raven.captureException(err);        
           }
-        });
-
-      
+        });     
     
 };

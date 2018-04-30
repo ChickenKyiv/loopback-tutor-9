@@ -9,8 +9,6 @@ let database = server.datasources.reservationDS;
 
 let helper     = require(path.resolve(__dirname, '003-helper'));
 
-let Attribute = require(path.resolve(__dirname, 'attributes'));
-
 let AccessToken = require(path.resolve(__dirname, 'accesstoken'));
 let ACL     	= require(path.resolve(__dirname, 'acl'));
 let Campground  = require(path.resolve(__dirname, 'campground'));
@@ -23,9 +21,13 @@ let options = {
 	raven: raven, 
 }
 async.parallel({
-    	attributes  : async.apply(helper.create, options, Attribute),
+	campground: async.apply(helper.create, options, Campground, function(err, campground){helper.create(options, Reservation)}),	
+	accessToken: async.apply(helper.create, options, AccessToken),
+	acl: async.apply(helper.create, options, ACL),
+	customer: async.apply(helper.create, options, Customer),
+	
 
-	}, function(err, results){
+}, function (err, results) {	
 		if (err) {
 			console.log(err);
 			raven.captureException(err);			
@@ -33,7 +35,7 @@ async.parallel({
 
 		}
 
-		if( !results || !results.attributes) {
+		if( !results) {
 			console.log("not imported well");
 			raven.captureException("not imported well");
 			console.log("not imported well");

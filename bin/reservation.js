@@ -1,4 +1,4 @@
-let table_name = 'Reservation'
+let table_name = 'reservation'
 
 const get = () => {
 
