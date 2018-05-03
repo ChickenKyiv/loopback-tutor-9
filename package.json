@@ -24,6 +24,7 @@
     "loopback-component-explorer": "^6.0.0",
     "loopback-component-storage": "^3.3.1",
     "loopback-connector-mongodb": "^3.4.3",
+    "mailgun-js": "^0.18.0",
     "nodemon": "^1.17.3",
     "raven": "^2.5.0",
     "serve-favicon": "^2.0.1",

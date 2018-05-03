@@ -21,9 +21,10 @@ let options = {
 	raven: raven, 
 }
 async.parallel({
-	campground: async.apply(helper.create, options, Campground, function(err, campground){helper.create(options, Reservation)}),	
-	accessToken: async.apply(helper.create, options, AccessToken),
-	acl: async.apply(helper.create, options, ACL),
+	// campground: async.apply(helper.create, options, Campground),
+	// reservation:  async.apply(helper.create, options, Reservation),
+	// accessToken: async.apply(helper.create, options, AccessToken),
+	// acl: async.apply(helper.create, options, ACL),
 	customer: async.apply(helper.create, options, Customer),
 	
 
@@ -39,8 +40,8 @@ async.parallel({
 			console.log("not imported well");
 			raven.captureException("not imported well");
 			console.log("not imported well");
-		}
-		Users.assignAdmin(options, results.customers[2].id);
+	}		
+		Customer.assignAdmin(options, results.customer[0].id);
 		console.log('import finished');
 	}
 
