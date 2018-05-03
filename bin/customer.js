@@ -36,7 +36,7 @@ function assignAdmin(options, admin_id){
     let RoleMapping = server.models.RoleMapping;  
   
       database.automigrate('Role', function(err){
-          if (err) return cb(err);
+          if (err) return console.log(err);
   
           Role.create({ name:'admin' })
           .then(function(role){
@@ -52,8 +52,7 @@ function assignAdmin(options, admin_id){
         raven.captureException("admin was not assigned");
         throw err;
       });
-      });
-    debug('admin was created');
+      });    
   };  
 
 
