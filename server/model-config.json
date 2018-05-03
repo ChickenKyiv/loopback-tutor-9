@@ -37,6 +37,14 @@
     "dataSource": "reservationDS",
     "public": false
   },
+  "RoleMapping": {
+    "dataSource": "reservationDS",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "reservationDS",
+    "public": false
+  },
   "Email": {
     "dataSource": "emailDS"
   },

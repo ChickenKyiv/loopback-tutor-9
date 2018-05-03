@@ -21,10 +21,10 @@ let options = {
 	raven: raven, 
 }
 async.parallel({
-	// campground: async.apply(helper.create, options, Campground),
-	// reservation:  async.apply(helper.create, options, Reservation),
-	// accessToken: async.apply(helper.create, options, AccessToken),
-	// acl: async.apply(helper.create, options, ACL),
+	campground: async.apply(helper.create, options, Campground),
+	reservation:  async.apply(helper.create, options, Reservation),
+	accessToken: async.apply(helper.create, options, AccessToken),
+	acl: async.apply(helper.create, options, ACL),
 	customer: async.apply(helper.create, options, Customer),
 	
 
