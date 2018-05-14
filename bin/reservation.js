@@ -1,21 +1,19 @@
 let table_name = 'reservation'
 
-const get = () => {
+const get = (campgrounds, customers) => {
 
      var reservation    = [
         {        
         "startDate": "2017-03-21",
-             "endDate": "2017-03-23",
-        //Here campground and customer is referenced in reservation
-        //Is this enough to bind it in our import script?
-        "campgroundId": 1,
-        "customerId": 2 
+        "endDate": "2017-03-23",        
+        "campgroundId": campgrounds[0].id.toString(),
+        "customerId": customers[1].id.toString() 
          },       
          {        
         "startDate": "2017-03-25",
         "endDate": "2017-03-31",
-        "campgroundId": 2,
-        "customerId": 3 
+        "campgroundId": campgrounds[1].id.toString(),
+        "customerId": customers[2].id.toString(),         
         }, 
     ];
      return reservation;
