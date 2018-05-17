@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# As per Issue #19, addding .vscode
+.vscode
+

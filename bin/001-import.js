@@ -21,8 +21,7 @@ let options = {
 	raven: raven, 
 }
 async.parallel({
-	campground: async.apply(helper.create, options, Campground),
-	reservation:  async.apply(helper.create, options, Reservation),
+	campground: async.apply(helper.create, options, Campground),	
 	accessToken: async.apply(helper.create, options, AccessToken),
 	acl: async.apply(helper.create, options, ACL),
 	customer: async.apply(helper.create, options, Customer),
@@ -40,7 +39,17 @@ async.parallel({
 			console.log("not imported well");
 			raven.captureException("not imported well");
 			console.log("not imported well");
-	}		
+		}		
+	
+		var campg = results.campground;
+		var cust = results.customer;
+		var reservartionData = Reservation.get(campg, cust);
+
+
+		helper.create_with_relations(options, reservartionData, Reservation, ( err, data ) => {
+			console.log(data);		
+		});
+
 		Customer.assignAdmin(options, results.customer[0].id);
 		console.log('import finished');
 	}
